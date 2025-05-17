@@ -1,4 +1,6 @@
-package woowacourse.shopping.domain
+package woowacourse.shopping.data
+
+import woowacourse.shopping.domain.Product
 
 interface ProductRepository {
     fun getProducts(): List<Product>

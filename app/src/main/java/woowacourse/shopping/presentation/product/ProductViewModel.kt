@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import woowacourse.shopping.ShoppingApplication
+import woowacourse.shopping.data.ProductRepository
 import woowacourse.shopping.domain.Product
-import woowacourse.shopping.domain.ProductRepository
 
 class ProductViewModel(
     private val productRepository: ProductRepository,
