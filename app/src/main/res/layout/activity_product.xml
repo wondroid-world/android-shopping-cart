@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="onClick"
+            type="kotlin.jvm.functions.Function0" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +43,7 @@
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/gray5"
             android:contentDescription="@string/product_ic_cart_explain"
+            android:onClick="@{() -> onClick.invoke()}"
             android:src="@drawable/ic_cart"
             app:layout_constraintBottom_toBottomOf="@id/tv_product_toolbar_title"
             app:layout_constraintEnd_toEndOf="@id/tb_product"
@@ -50,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
+            android:contentDescription="@string/product_list_explain"
             android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingTop="20dp"

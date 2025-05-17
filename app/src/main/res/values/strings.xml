@@ -3,6 +3,7 @@
 
     <!--  상품 페이지  -->
     <string name="product_ic_cart_explain">장바구니 페이지로 이동하는 버튼입니다.</string>
+    <string name="product_list_explain">상품 목록 부분입니다</string>
     <string name="product_toolbar_text">Shopping</string>
     <string name="product_price">%,d원</string>
 
@@ -11,5 +12,6 @@
     <string name="detail_product_add_cart">장바구니 담기</string>
 
     <string name="cart_toolbar_text">Cart</string>
+
 
 </resources>
