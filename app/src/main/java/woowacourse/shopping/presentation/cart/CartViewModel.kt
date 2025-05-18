@@ -8,26 +8,26 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import woowacourse.shopping.ShoppingApplication
-import woowacourse.shopping.data.ProductRepository
+import woowacourse.shopping.data.cartdb.CartRepository
 import woowacourse.shopping.domain.Product
 import kotlin.concurrent.thread
 
 class CartViewModel(
-    private val productRepository: ProductRepository,
+    private val cartRepository: CartRepository,
 ) : ViewModel() {
     private val _products: MutableLiveData<List<Product>> = MutableLiveData(emptyList())
     val products: LiveData<List<Product>> get() = _products
 
     fun fetchData() {
         thread {
-            _products.postValue(productRepository.getCartProducts())
+//            _products.postValue(productRepository.getCartProducts())
         }
     }
 
     fun deleteProduct(product: Product) {
         thread {
-            productRepository.deleteProduct(product.id)
-            _products.postValue(productRepository.getCartProducts())
+//            productRepository.deleteProduct(product.id)
+//            _products.postValue(productRepository.getCartProducts())
         }
     }
 
@@ -35,10 +35,9 @@ class CartViewModel(
         val Factory: ViewModelProvider.Factory =
             viewModelFactory {
                 initializer {
-                    val productRepository =
-                        (this[APPLICATION_KEY] as ShoppingApplication).provideProductRepository()
+                    val cartRepository = (this[APPLICATION_KEY] as ShoppingApplication).cartRepository
                     CartViewModel(
-                        productRepository = productRepository,
+                        cartRepository = cartRepository,
                     )
                 }
             }
