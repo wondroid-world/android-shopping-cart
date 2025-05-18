@@ -12,6 +12,8 @@
     <string name="detail_product_price">%,d원</string>
     <string name="detail_product_add_cart">장바구니 담기</string>
     <string name="detail_product_ic_exit">상품 목록으로 이동하는 버튼입니다.</string>
+    <string name="detail_product_add_cart_success">상품이 장바구니에 담겼습니다.</string>
+
 
     <string name="cart_toolbar_text">Cart</string>
 </resources>
