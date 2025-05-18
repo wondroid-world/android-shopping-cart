@@ -2,65 +2,35 @@ package woowacourse.shopping.presentation.product
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import woowacourse.shopping.R
 import woowacourse.shopping.databinding.ItemProductBinding
 import woowacourse.shopping.domain.Product
 
-@BindingAdapter("imageUrl")
-fun ImageView.loadImage(url: String?) {
-    Glide
-        .with(this.context)
-        .load(url)
-        .fallback(R.drawable.ic_delete)
-        .error(R.drawable.ic_delete)
-        .into(this)
-}
-
 class ProductAdapter(
-    private val onClick: (Product) -> Unit,
-) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
-    private lateinit var items: List<Product>
+    private val onSelectedProduct: (Product) -> Unit,
+) : RecyclerView.Adapter<ProductViewHolder>() {
+    private val products: MutableList<Product> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
     ): ProductViewHolder {
         val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ProductViewHolder(binding, onClick)
+        return ProductViewHolder(binding, onSelectedProduct)
     }
 
     override fun onBindViewHolder(
         holder: ProductViewHolder,
         position: Int,
     ) {
-        holder.bind(items[position])
+        holder.bind(products[position])
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = products.size
 
-    fun setData(list: List<Product>) {
-        items = list
-    }
-
-    class ProductViewHolder(
-        val binding: ItemProductBinding,
-        val onClick: (Product) -> Unit,
-    ) : RecyclerView.ViewHolder(binding.root) {
-        private var currentItem: Product? = null
-
-        init {
-            binding.root.setOnClickListener {
-                currentItem?.let { onClick(it) }
-            }
-        }
-
-        fun bind(item: Product) {
-            binding.product = item
-            currentItem = item
-        }
+    fun setData(newProducts: List<Product>) {
+        val previous = products.size
+        products += newProducts
+        notifyItemRangeInserted(previous, newProducts.size)
     }
 }

@@ -3,34 +3,22 @@ package woowacourse.shopping.presentation.product
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import woowacourse.shopping.ShoppingApplication
 import woowacourse.shopping.data.ProductRepository
+import woowacourse.shopping.data.ProductRepositoryImpl
 import woowacourse.shopping.domain.Product
 
 class ProductViewModel(
-    private val productRepository: ProductRepository,
+    private val productRepository: ProductRepository = ProductRepositoryImpl(),
 ) : ViewModel() {
-    private val _products: MutableLiveData<List<Product>> = MutableLiveData()
+    private val _products: MutableLiveData<List<Product>> = MutableLiveData(emptyList())
     val products: LiveData<List<Product>> get() = _products
 
     fun fetchData() {
-        _products.value = productRepository.getProducts()
+        val newProducts = productRepository.getProducts(LIMIT_COUNT)
+        _products.value = (_products.value ?: emptyList()).plus(newProducts)
     }
 
     companion object {
-        val Factory: ViewModelProvider.Factory =
-            viewModelFactory {
-                initializer {
-                    val productRepository =
-                        (this[APPLICATION_KEY] as ShoppingApplication).provideProductRepository()
-                    ProductViewModel(
-                        productRepository = productRepository,
-                    )
-                }
-            }
+        private const val LIMIT_COUNT = 20
     }
 }
