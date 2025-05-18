@@ -3,12 +3,16 @@ package woowacourse.shopping.presentation.product
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import woowacourse.shopping.data.ProductRepository
-import woowacourse.shopping.data.ProductRepositoryImpl
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import woowacourse.shopping.ShoppingApplication
+import woowacourse.shopping.data.products.ProductRepository
 import woowacourse.shopping.domain.Product
 
 class ProductViewModel(
-    private val productRepository: ProductRepository = ProductRepositoryImpl(),
+    private val productRepository: ProductRepository,
 ) : ViewModel() {
     private val _products: MutableLiveData<List<Product>> = MutableLiveData(emptyList())
     val products: LiveData<List<Product>> get() = _products
@@ -20,5 +24,16 @@ class ProductViewModel(
 
     companion object {
         private const val LIMIT_COUNT = 20
+
+        val Factory: ViewModelProvider.Factory =
+            viewModelFactory {
+                initializer {
+                    val productRepository =
+                        (this[APPLICATION_KEY] as ShoppingApplication).productRepository
+                    ProductViewModel(
+                        productRepository = productRepository,
+                    )
+                }
+            }
     }
 }

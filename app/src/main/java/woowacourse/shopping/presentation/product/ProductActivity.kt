@@ -16,7 +16,7 @@ import woowacourse.shopping.presentation.productdetail.ProductDetailActivity
 class ProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductBinding
     private val productAdapter: ProductAdapter by lazy { ProductAdapter(::navigateToProductDetail) }
-    private val productViewModel: ProductViewModel by viewModels()
+    private val productViewModel: ProductViewModel by viewModels { ProductViewModel.Factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
