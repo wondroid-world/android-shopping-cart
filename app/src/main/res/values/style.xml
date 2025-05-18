@@ -30,4 +30,24 @@
         <item name="android:textSize">@dimen/font_size_small</item>
         <item name="android:textColor">@color/gray5</item>
     </style>
+
+    <!--  product detail 페이지 상품 이름 스타일  -->
+    <style name="ProductDetailTitleStyle" parent="BaseTextStyle">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--  product detail 페이지 상품 가격 스타일  -->
+    <style name="ProductDetailPriceStyle" parent="BaseTextStyle">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+    </style>
+
+    <!--  product detail 페이지 상품 장바구니 스타일  -->
+    <style name="ProductDetailCartStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

@@ -7,11 +7,11 @@
     <string name="product_toolbar_text">Shopping</string>
     <string name="product_price">%,d원</string>
 
+    <!--  상품 상세 페이지  -->
     <string name="detail_product_price_text">가격</string>
     <string name="detail_product_price">%,d원</string>
     <string name="detail_product_add_cart">장바구니 담기</string>
+    <string name="detail_product_ic_exit">상품 목록으로 이동하는 버튼입니다.</string>
 
     <string name="cart_toolbar_text">Cart</string>
-
-
 </resources>
